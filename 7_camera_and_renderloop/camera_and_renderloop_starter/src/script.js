@@ -1,4 +1,7 @@
 import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+console.log(OrbitControls)
 
 // initialize the scene
 const scene = new THREE.Scene()
@@ -15,10 +18,10 @@ scene.add(cubeMesh)
 
 // initialize the camera
 const camera = new THREE.PerspectiveCamera(
-  75, 
+  35, 
   window.innerWidth / window.innerHeight,
   0.1,
-  30)
+  200)
 camera.position.z = 5
 
 // initialize the renderer
@@ -27,4 +30,15 @@ const renderer = new THREE.WebGLRenderer({
   canvas: canvas
 })
 renderer.setSize(window.innerWidth, window.innerHeight)
-renderer.render(scene, camera)
+const controls = new OrbitControls(camera, canvas)
+controls.enableDamping = true
+controls.autoRotate = true
+
+
+const renderloop = () => {
+  controls.update()
+  renderer.render(scene, camera)
+  window.requestAnimationFrame(renderloop)
+}
+
+renderloop()
