@@ -6,10 +6,29 @@ const scene = new THREE.Scene();
 
 // add objects to the scene
 const cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
-const cubeMaterial = new THREE.MeshBasicMaterial({ color: "red" });
+const cubeMaterial = new THREE.MeshBasicMaterial({ color: "red", wireframe: true });
 
 const cubeMesh = new THREE.Mesh(cubeGeometry, cubeMaterial);
-scene.add(cubeMesh);
+// const cubeMesh2 = new THREE.Mesh(cubeGeometry, cubeMaterial);
+// const cubeMesh3 = new THREE.Mesh(cubeGeometry, cubeMaterial);
+// cubeMesh.position.y = 1
+
+// cubeMesh2.position.x = 2
+// cubeMesh3.position.x = -2
+
+
+// const group = new THREE.Group();
+// group.add(cubeMesh);
+// group.add(cubeMesh2)
+// group.add(cubeMesh3)
+
+
+scene.add(cubeMesh)
+//scene.add(group);
+cubeMesh.rotation.x = THREE.MathUtils.degToRad(45)
+
+const axesHelper = new THREE.AxesHelper(2);
+cubeMesh.add(axesHelper)
 
 // initialize the camera
 const camera = new THREE.PerspectiveCamera(
